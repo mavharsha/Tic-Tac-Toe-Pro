@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/gameScreen_player_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text=""
+        android:layout_marginTop="40dp"/>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+        <TableRow android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/row_00"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+            <ImageButton
+                android:id="@+id/row_01"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+            <ImageButton
+                android:id="@+id/row_02"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <ImageButton
+                android:id="@+id/row_10"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+            <ImageButton
+                android:id="@+id/row_11"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+            <ImageButton
+                android:id="@+id/row_12"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+
+                />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+            <ImageButton
+                android:id="@+id/row_20"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+            <ImageButton
+                android:id="@+id/row_21"
+                android:layout_height="@dimen/box"
+                android:onClick="buttonClicked"
+                android:layout_width="@dimen/box"
+                />
+            <ImageButton
+                android:id="@+id/row_22"
+                android:layout_height="@dimen/box"
+                android:layout_width="@dimen/box"
+                android:onClick="buttonClicked"
+                />
+        </TableRow>
+
+        <TableRow android:gravity="center"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/gameScreen_p1_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/gameScreen_p2_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+            </TextView>
+
+
+        </TableRow>
+
+        <TableRow android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="    Win: ">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="    Win: ">
+            </TextView>
+
+        </TableRow>
+
+        <TableRow android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/gameScreen_newgame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Game!"
+                android:onClick="buttonClicked"/>
+
+         </TableRow>
+    </TableLayout>
+
+</LinearLayout>

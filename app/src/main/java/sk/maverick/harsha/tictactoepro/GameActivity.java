@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ * Author: Sree Harsha Mamilla.
+ * Pasyanthi
+ */
+
 package sk.maverick.harsha.tictactoepro;
 
 import android.support.v7.app.ActionBarActivity;
@@ -16,6 +22,9 @@ public class GameActivity extends ActionBarActivity {
     IPlayer player_two = new PlayerTwo(1);
     IPlayer currentPlayer = player_one  ;
     TextView playerOneScore, playerTwoScore, playerTurn;
+    static int selected;
+    ImageButton image[][] = new ImageButton[3][3];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,65 +34,93 @@ public class GameActivity extends ActionBarActivity {
         playerTwoScore = (TextView) findViewById(R.id.gameScreen_p2_score);
         playerTurn = (TextView) findViewById(R.id.gameScreen_player_turn);
 
+        initialize();
+
         updateScreen();
+        start();
     }
 
-    public void buttonClicked(View view){
+
+    public void start(){
+        int index;
+        while (!board.ended){
+            index =  board.move(currentPlayer);
+
+            try{
+
+                int resource = 0 == currentPlayer.getAssigned() ? R.drawable.toe : R.drawable.cross;
+                image[index/3][index%3].setImageResource(resource);
+
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+
+
+        }
+    }
+
+    public void buttonClicked(ImageButton view){
 
         switch (view.getId()){
 
-            case R.id.row_00 :    Log.d("GameActivity","Pressed one"); board.move(currentPlayer, 0, (ImageButton) view);
-                                  setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_00 : selected = 0;
+                break;
 
-            case R.id.row_01 :    board.move(currentPlayer, 1, (ImageButton) view);
-                                    setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_01 : selected = 1;
+                break;
 
-            case R.id.row_02 :    board.move(currentPlayer, 2, (ImageButton) view);
-                                    setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_02 : selected = 2;
+                break;
 
-            case R.id.row_10 :    board.move(currentPlayer, 3, (ImageButton) view);
-                                    setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_10 : selected = 3;
+                break;
 
-            case R.id.row_11 :    board.move(currentPlayer, 4, (ImageButton) view);
-                                    setCurrentPlayer();
-                                     updateScreen();
-                                        break;
+            case R.id.row_11 : selected = 4;
+                break;
 
-            case R.id.row_12 :    board.move(currentPlayer, 5, (ImageButton) view);
-                                    setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_12 : selected = 5;
+                break;
 
-            case R.id.row_20 :    board.move(currentPlayer, 6, (ImageButton) view);
-                                    setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_20 : selected = 6;
+                break;
 
-            case R.id.row_21 :    board.move(currentPlayer, 7, (ImageButton) view);
-                                     setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_21 : selected = 7;
+                break;
 
-            case R.id.row_22 :    board.move(currentPlayer, 8, (ImageButton)     view);
-                                     setCurrentPlayer();
-                                    updateScreen();
-                                        break;
+            case R.id.row_22 : selected = 8;
+                break;
 
 
-            case R.id.gameScreen_newgame  :       changeAssignment();
-                                            updateScreen();
-                                          break;
+            case R.id.gameScreen_newgame  :       newGame();
+                break;
         }
 
     }
+
+
+    public void newGame(){
+        board = new Board();
+        changeAssignment();
+        updateScreen();
+    }
+
+    private void initialize() {
+
+        image[0][0] = (ImageButton) findViewById(R.id.row_00);
+        image[0][1] = (ImageButton) findViewById(R.id.row_01);
+        image[0][2] = (ImageButton) findViewById(R.id.row_02);
+
+        image[1][0] = (ImageButton) findViewById(R.id.row_10);
+        image[1][1] = (ImageButton) findViewById(R.id.row_11);
+        image[1][2] = (ImageButton) findViewById(R.id.row_12);
+
+        image[2][0] = (ImageButton) findViewById(R.id.row_20);
+        image[2][1] = (ImageButton) findViewById(R.id.row_21);
+        image[2][2] = (ImageButton) findViewById(R.id.row_22);
+    }
+
 
     public void setCurrentPlayer(){
         currentPlayer = currentPlayer == player_one ? player_two : player_one;
@@ -92,7 +129,6 @@ public class GameActivity extends ActionBarActivity {
 
     // Change Assignment is called is called when new game is created.
     public void changeAssignment(){
-
         Log.d("GameActivity", "Changing assignment");
         int temp = player_one.getAssigned();
         player_one.setAssigned(player_two.getAssigned());
@@ -101,12 +137,11 @@ public class GameActivity extends ActionBarActivity {
     }
 
     public void updateScreen(){
-
         /*
          *  0 --> O
          *  1 --> X
+         *  2 --> Empty
          */
-
         char c1 = 0 == player_one.getAssigned()? 'O': 'X';
         playerOneScore.setText("Player One: " + c1);
         char c2 = 0 == player_two.getAssigned()? 'O': 'X';

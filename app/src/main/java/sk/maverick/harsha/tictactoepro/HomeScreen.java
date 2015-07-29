@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ * Author: Sree Harsha Mamilla.
+ * Pasyanthi
+ */
+
 package sk.maverick.harsha.tictactoepro;
 
 import android.support.v7.app.ActionBarActivity;

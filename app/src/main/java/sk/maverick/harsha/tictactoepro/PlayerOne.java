@@ -7,6 +7,7 @@
 package sk.maverick.harsha.tictactoepro;
 
 import android.util.Log;
+import android.widget.ImageButton;
 
 
 public class PlayerOne implements IPlayer {
@@ -17,19 +18,17 @@ public class PlayerOne implements IPlayer {
         this.assigned = assigned;
     }
 
+
     @Override
-    public void playMove() {
-
-    }
-
-    public int getAssigned() {
-        return assigned;
-    }
-
+    public int playMove() { return GameActivity.selected; }
+    @Override
     public void setAssigned(int assigned) {
         this.assigned = assigned;
     }
 
+    @Override
+    public int getAssigned() { return assigned; }
+    @Override
     public String getName() {
         return name;
     }

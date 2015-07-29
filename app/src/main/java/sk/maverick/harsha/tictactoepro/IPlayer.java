@@ -1,17 +1,20 @@
+/*
+ * Copyright (c) 2015.
+ * Author: Sree Harsha Mamilla.
+ * Pasyanthi
+ */
+
 package sk.maverick.harsha.tictactoepro;
 
-/**
- * Created by Harsha on 7/27/2015.
- */
 public interface IPlayer {
-    /*
-     *  0 --> O
-     *  1 --> X
-     */
-
+        /*
+         *  0 --> O
+         *  1 --> X
+         *  2 --> Empty
+         */
     int assigned = 0;
-    void playMove();
+    int playMove();
     int getAssigned();
-    void setAssigned(int assigned);
+    void setAssigned(int index);
     String getName();
 }

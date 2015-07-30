@@ -22,18 +22,21 @@
                 android:id="@+id/row_00"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="0"
                 android:onClick="buttonClicked"
                 />
             <ImageButton
                 android:id="@+id/row_01"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="1"
                 android:onClick="buttonClicked"
                 />
             <ImageButton
                 android:id="@+id/row_02"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="2"
                 android:onClick="buttonClicked"
                 />
         </TableRow>
@@ -43,18 +46,21 @@
                 android:id="@+id/row_10"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="3"
                 android:onClick="buttonClicked"
                 />
             <ImageButton
                 android:id="@+id/row_11"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="4"
                 android:onClick="buttonClicked"
                 />
             <ImageButton
                 android:id="@+id/row_12"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="5"
                 android:onClick="buttonClicked"
 
                 />
@@ -65,18 +71,21 @@
                 android:id="@+id/row_20"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="6"
                 android:onClick="buttonClicked"
                 />
             <ImageButton
                 android:id="@+id/row_21"
                 android:layout_height="@dimen/box"
                 android:onClick="buttonClicked"
+                android:tag="7"
                 android:layout_width="@dimen/box"
                 />
             <ImageButton
                 android:id="@+id/row_22"
                 android:layout_height="@dimen/box"
                 android:layout_width="@dimen/box"
+                android:tag="8"
                 android:onClick="buttonClicked"
                 />
         </TableRow>

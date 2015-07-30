@@ -6,18 +6,38 @@
 
 package sk.maverick.harsha.tictactoepro;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class HomeScreen extends ActionBarActivity {
 
+    String opponent = "computer";                   // default the opponent is computer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
     }
+
+
+    public void chooseOpponent(View view){
+
+        Button button = (Button) view;
+        opponent = (String) button.getTag();
+
+        Log.v("Selected opponent", opponent);
+
+        // Intent to game screen
+        Intent intent = new Intent(HomeScreen.this, GameActivity.class);
+        intent.putExtra("player-type", opponent);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

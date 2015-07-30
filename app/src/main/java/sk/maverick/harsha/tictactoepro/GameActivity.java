@@ -6,24 +6,26 @@
 
 package sk.maverick.harsha.tictactoepro;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 
 public class GameActivity extends ActionBarActivity {
 
     Board board = new Board();
     IPlayer player_one = new PlayerOne(0);
-    IPlayer player_two = new PlayerTwo(1);
+    IPlayer player_two;
     IPlayer currentPlayer = player_one  ;
     TextView playerOneScore, playerTwoScore, playerTurn;
     static int selected;
-    ImageButton image[][] = new ImageButton[3][3];
+    int count = 0;
+    String player_type ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,92 +36,79 @@ public class GameActivity extends ActionBarActivity {
         playerTwoScore = (TextView) findViewById(R.id.gameScreen_p2_score);
         playerTurn = (TextView) findViewById(R.id.gameScreen_player_turn);
 
-        initialize();
+        Intent intent = getIntent();
+        player_type = intent.getStringExtra("player-type");
 
-        updateScreen();
-        start();
-    }
+        playerTwoScore.setText(player_type);
 
-
-    public void start(){
-        int index;
-        while (!board.ended){
-            index =  board.move(currentPlayer);
-
-            try{
-
-                int resource = 0 == currentPlayer.getAssigned() ? R.drawable.toe : R.drawable.cross;
-                image[index/3][index%3].setImageResource(resource);
-
-            }catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-
-
+        if(player_type.equalsIgnoreCase(new ArtificialIntelligence(1).getName()))
+        {
+            Log.v("Selected opponent", player_type);            // Human Vs Computer
+            player_two = new ArtificialIntelligence(1);
         }
-    }
-
-    public void buttonClicked(ImageButton view){
-
-        switch (view.getId()){
-
-            case R.id.row_00 : selected = 0;
-                break;
-
-            case R.id.row_01 : selected = 1;
-                break;
-
-            case R.id.row_02 : selected = 2;
-                break;
-
-            case R.id.row_10 : selected = 3;
-                break;
-
-            case R.id.row_11 : selected = 4;
-                break;
-
-            case R.id.row_12 : selected = 5;
-                break;
-
-            case R.id.row_20 : selected = 6;
-                break;
-
-            case R.id.row_21 : selected = 7;
-                break;
-
-            case R.id.row_22 : selected = 8;
-                break;
-
-
-            case R.id.gameScreen_newgame  :       newGame();
-                break;
+        else
+        {
+            Log.v("Selected opponent", player_type);
+            player_two = new PlayerTwo(1);                     // Human Vs Human
         }
 
     }
 
 
+    public void buttonClicked(View view){
+
+        ImageButton image = (ImageButton) view;
+        selected = Integer.parseInt((String) image.getTag());
+        Log.v("Button clicked ","Button Clicked" + selected);
+        count++;
+
+      /*
+        *  first check if its against computer or human
+        * */
+        if(!player_type.equalsIgnoreCase(new ArtificialIntelligence(1).getName()))
+        {
+            /* Human move */
+           // board.move(currentPlayer);
+        }
+        else{
+
+            /* Play humans move and call after_move function */
+
+
+        }
+
+
+
+
+            if(count%2 != 0 )
+        {
+            board.move(currentPlayer);
+            changeAssignment();
+            afterMove();
+        }
+
+    }
+
+    private void afterMove() {
+
+        board.checkForWin();
+
+        if(currentPlayer.getName().equalsIgnoreCase("computer") && !board.ended){
+            board.move(currentPlayer);
+        }
+    }
+
+
+    // Still have to work on newGame
+    // when its in computer mode and its computers turn
     public void newGame(){
         board = new Board();
         changeAssignment();
         updateScreen();
+
+       // if(count%2 ==0)
     }
 
-    private void initialize() {
-
-        image[0][0] = (ImageButton) findViewById(R.id.row_00);
-        image[0][1] = (ImageButton) findViewById(R.id.row_01);
-        image[0][2] = (ImageButton) findViewById(R.id.row_02);
-
-        image[1][0] = (ImageButton) findViewById(R.id.row_10);
-        image[1][1] = (ImageButton) findViewById(R.id.row_11);
-        image[1][2] = (ImageButton) findViewById(R.id.row_12);
-
-        image[2][0] = (ImageButton) findViewById(R.id.row_20);
-        image[2][1] = (ImageButton) findViewById(R.id.row_21);
-        image[2][2] = (ImageButton) findViewById(R.id.row_22);
-    }
 
 
     public void setCurrentPlayer(){
@@ -169,7 +158,6 @@ public class GameActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

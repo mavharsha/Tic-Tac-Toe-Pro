@@ -22,14 +22,14 @@ public class Board {
     }
 
     public int move(IPlayer player){
-
         int index = player.playMove();
         board[index] = player.getAssigned();
         return index;
     }
 
+    public void checkForWin(){
 
-
+    }
 
 
 }

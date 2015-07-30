@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="VsPlayer">Vs Player</string>
+    <string name="VsComp">Vs Computer</string>
+    <string name="human">human</string>
+    <string name="computer">computer</string>
+
 </resources>

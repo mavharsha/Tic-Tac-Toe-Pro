@@ -8,13 +8,21 @@
 package sk.maverick.harsha.tictactoepro;
 
 
-public class ArtificialIntelligence {
+public class ArtificialIntelligence implements IPlayer{
 
+    int assigned;
+    final String name = "computer";
+    public ArtificialIntelligence(int assigned) { this.assigned = assigned; }
 
-    public void playMove() {
+    public int playMove() { return GameActivity.selected; }
 
-    }
+    @Override
+    public int getAssigned() { return this.assigned; }
 
+    @Override
+    public void setAssigned(int index) { this.assigned = index; }
 
+    @Override
+    public String getName() { return this.name; }
 
 }

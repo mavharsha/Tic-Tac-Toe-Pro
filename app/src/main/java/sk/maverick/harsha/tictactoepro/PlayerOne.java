@@ -7,7 +7,6 @@
 package sk.maverick.harsha.tictactoepro;
 
 import android.util.Log;
-import android.widget.ImageButton;
 
 
 public class PlayerOne implements IPlayer {

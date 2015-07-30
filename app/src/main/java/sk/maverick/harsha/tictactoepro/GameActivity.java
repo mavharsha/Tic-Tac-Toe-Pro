@@ -25,21 +25,19 @@ public class GameActivity extends ActionBarActivity {
     TextView playerOneScore, playerTwoScore, playerTurn;
     static int selected;
     int count = 0;
-    String player_type ="";
+    String player_type = "";
+    static final ImageButton imageButton[][] = new ImageButton[3][3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
-        playerOneScore = (TextView) findViewById(R.id.gameScreen_p1_score);
-        playerTwoScore = (TextView) findViewById(R.id.gameScreen_p2_score);
-        playerTurn = (TextView) findViewById(R.id.gameScreen_player_turn);
+        initialize();                                                       // Initializing the ui elements
 
         Intent intent = getIntent();
         player_type = intent.getStringExtra("player-type");
 
-        playerTwoScore.setText(player_type);
 
         if(player_type.equalsIgnoreCase(new ArtificialIntelligence(1).getName()))
         {
@@ -54,7 +52,6 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
-
     public void buttonClicked(View view){
 
         ImageButton image = (ImageButton) view;
@@ -68,22 +65,8 @@ public class GameActivity extends ActionBarActivity {
         if(!player_type.equalsIgnoreCase(new ArtificialIntelligence(1).getName()))
         {
             /* Human move */
-           // board.move(currentPlayer);
-        }
-        else{
-
-            /* Play humans move and call after_move function */
-
-
-        }
-
-
-
-
-            if(count%2 != 0 )
-        {
             board.move(currentPlayer);
-            changeAssignment();
+            changeCurrentPlayer();
             afterMove();
         }
 
@@ -93,27 +76,33 @@ public class GameActivity extends ActionBarActivity {
 
         board.checkForWin();
 
-        if(currentPlayer.getName().equalsIgnoreCase("computer") && !board.ended){
+        if(currentPlayer.getName().equalsIgnoreCase("computer") && !Board.ended){
             board.move(currentPlayer);
+            changeCurrentPlayer();
+            afterMove();
+        }
+
+        if(Board.ended){
+            board.getWinner();
         }
     }
 
+    public void newGameClicked(View view){
 
-    // Still have to work on newGame
-    // when its in computer mode and its computers turn
-    public void newGame(){
         board = new Board();
         changeAssignment();
         updateScreen();
 
-       // if(count%2 ==0)
+        if(currentPlayer.getName().equalsIgnoreCase("computer")){
+            currentPlayer.playMove();
+            changeCurrentPlayer();
+        }
     }
 
 
-
-    public void setCurrentPlayer(){
+    public void changeCurrentPlayer(){
         currentPlayer = currentPlayer == player_one ? player_two : player_one;
-        Log.d("GameActivity","Current player is " + currentPlayer.getName());
+        Log.d("GameActivity", "Current player is " + currentPlayer.getName());
     }
 
     // Change Assignment is called is called when new game is created.
@@ -137,6 +126,27 @@ public class GameActivity extends ActionBarActivity {
         playerTwoScore.setText("Player Two: " + c2);
 
         playerTurn.setText(currentPlayer.getName() + "'s Turn!");
+    }
+
+
+    public void initialize(){
+
+        imageButton[0][0] = (ImageButton) findViewById(R.id.row_00);
+        imageButton[0][1] = (ImageButton) findViewById(R.id.row_01);
+        imageButton[0][2] = (ImageButton) findViewById(R.id.row_02);
+
+        imageButton[1][0] = (ImageButton) findViewById(R.id.row_10);
+        imageButton[1][1] = (ImageButton) findViewById(R.id.row_11);
+        imageButton[1][2] = (ImageButton) findViewById(R.id.row_12);
+
+        imageButton[2][0] = (ImageButton) findViewById(R.id.row_20);
+        imageButton[2][1] = (ImageButton) findViewById(R.id.row_21);
+        imageButton[2][2] = (ImageButton) findViewById(R.id.row_22);
+
+        playerOneScore = (TextView) findViewById(R.id.gameScreen_p1_score);
+        playerTwoScore = (TextView) findViewById(R.id.gameScreen_p2_score);
+        playerTurn = (TextView) findViewById(R.id.gameScreen_player_turn);
+
     }
 
 

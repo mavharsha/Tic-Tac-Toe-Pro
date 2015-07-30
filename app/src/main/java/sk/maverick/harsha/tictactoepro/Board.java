@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 public class Board {
 
     int board[] = new int[9];
-    Boolean ended;
+    static Boolean ended = false;
     String winner = "";
     public Board() {
 
@@ -24,6 +24,8 @@ public class Board {
 
     public void move(IPlayer player){
         int index = player.playMove();
+        int resource = 0 == player.getAssigned() ? R.drawable.toe : R.drawable.cross;
+        GameActivity.imageButton[index/3][index%3].setImageResource(resource);
         board[index] = player.getAssigned();
     }
 
@@ -35,4 +37,6 @@ public class Board {
     public String getWinner() {
         return winner;
     }
+
+
 }

@@ -13,6 +13,7 @@ public class Board {
 
     int board[] = new int[9];
     Boolean ended;
+    String winner = "";
     public Board() {
 
         ended = false;
@@ -21,15 +22,17 @@ public class Board {
         }
     }
 
-    public int move(IPlayer player){
+    public void move(IPlayer player){
         int index = player.playMove();
         board[index] = player.getAssigned();
-        return index;
     }
 
     public void checkForWin(){
 
+
     }
 
-
+    public String getWinner() {
+        return winner;
+    }
 }

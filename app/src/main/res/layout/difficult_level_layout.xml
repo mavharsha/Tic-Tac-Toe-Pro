@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015.
+  ~ Author: Sree Harsha Mamilla.
+  ~ Pasyanthi
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".HomeScreen">
+
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:id="@+id/difficulty_level_lame"
+        android:layout_marginTop="20dp"
+        android:text="Lame"
+        android:onClick="levelSelected"/>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:id="@+id/difficulty_level_serious"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="A Bit Serious"
+        android:onClick="levelSelected"/>
+
+</LinearLayout>

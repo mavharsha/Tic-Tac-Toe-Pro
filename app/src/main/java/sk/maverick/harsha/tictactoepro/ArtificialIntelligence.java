@@ -8,13 +8,25 @@
 package sk.maverick.harsha.tictactoepro;
 
 
+import java.util.Random;
+
 public class ArtificialIntelligence implements IPlayer{
 
     int assigned;
     final String name = "computer";
     public ArtificialIntelligence(int assigned) { this.assigned = assigned; }
 
-    public int playMove() { return GameActivity.selected; }
+    public int playMove() {
+        int index;
+        while (true) {
+            index = new Random().nextInt(9);
+            if (Board.board [index] == 2 ) {
+                break;
+            }
+        }
+
+
+        return index; }
 
     @Override
     public int getAssigned() { return this.assigned; }

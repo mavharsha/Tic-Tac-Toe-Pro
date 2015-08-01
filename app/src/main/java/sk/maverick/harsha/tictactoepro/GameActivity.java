@@ -19,7 +19,7 @@ import android.widget.ImageButton;
 public class GameActivity extends ActionBarActivity {
 
     Board board = new Board();
-    IPlayer player_one = new PlayerOne(0);
+    IPlayer player_one = new PlayerOne(1);
     IPlayer player_two;
     IPlayer currentPlayer = player_one  ;
     TextView playerOneScore, playerTwoScore, playerTurn;
@@ -33,21 +33,24 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
-        initialize();                                                       // Initializing the ui elements
+        initialize();                                           // Initializing the ui elements
 
         Intent intent = getIntent();
         player_type = intent.getStringExtra("player-type");
+        Log.v("Selected opponent", player_type);
 
 
-        if(player_type.equalsIgnoreCase(new ArtificialIntelligence(1).getName()))
+        if(player_type.equalsIgnoreCase("computer"))
         {
-            Log.v("Selected opponent", player_type);            // Human Vs Computer
-            player_two = new ArtificialIntelligence(1);
+                        // Human Vs Computer
+            player_two = new ArtificialIntelligence(0);
+            Log.v("Selected opponent", player_two.getName());
         }
         else
         {
-            Log.v("Selected opponent", player_type);
-            player_two = new PlayerTwo(1);                     // Human Vs Human
+            player_two = new PlayerTwo(0);                     // Human Vs Human
+            Log.v("Selected opponent", player_two.getName());
+
         }
 
     }
@@ -62,12 +65,18 @@ public class GameActivity extends ActionBarActivity {
       /*
         *  first check if its against computer or human
         * */
-        if(!player_type.equalsIgnoreCase(new ArtificialIntelligence(1).getName()))
+        if(!player_type.equalsIgnoreCase("computer"))
         {
             /* Human move */
             board.move(currentPlayer);
             changeCurrentPlayer();
             afterMove();
+        }else
+        {
+            board.move(currentPlayer);
+            changeCurrentPlayer();
+            afterMove();
+
         }
 
     }
@@ -83,7 +92,13 @@ public class GameActivity extends ActionBarActivity {
         }
 
         if(Board.ended){
-            board.getWinner();
+           // board.getWinner();
+            int winner = board.getWinner();
+
+           // String winnerName = winner == curr
+            IPlayer winnerPlayer = winner == player_one.getAssigned() ? player_one : player_two;
+
+            Log.v("Game Activity","Game Ended and the winner is " + winnerPlayer.getName());
         }
     }
 

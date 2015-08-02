@@ -7,6 +7,7 @@
 package sk.maverick.harsha.tictactoepro;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -33,31 +34,30 @@ public class HomeScreen extends ActionBarActivity {
 
         Log.v("Selected opponent", opponent);
 
-          /*  if(opponent.equalsIgnoreCase("computer")){
+            if(opponent.equalsIgnoreCase("computer")){
 
-                Dialog dialog = new Dialog(HomeScreen.this);
+                FragmentManager fragmentManager = getFragmentManager();
+                MyDialogFragment myDialogFragment = new MyDialogFragment();
+
+                myDialogFragment.show(fragmentManager, "MyDialog");
+
+                /*Dialog dialog = new Dialog(HomeScreen.this);
                 dialog.setTitle("Choose Difficulty");
                 dialog.setContentView(R.layout.difficult_level_layout);
-                dialog.show();
-            }else{*/
+                dialog.show();*/
+            }else{
 
                  // Intent to game screen
                 Intent intent = new Intent(HomeScreen.this, GameActivity.class);
                 intent.putExtra("player-type", opponent);
                 startActivity(intent);
-          //  }
+           }
     }
 
-    public void levelSelected(View view){
+    public void level(Button view){
 
-        switch (view.getId()){
 
-            case R.id.difficulty_level_lame :  Log.v("Difficulty level","Lame selected");
-                                                break;
-            case R.id.difficulty_level_serious : Log.v("Difficulty level","Serious selected");
-                                                break;
-            default: break;
-        }
+
     }
 
 

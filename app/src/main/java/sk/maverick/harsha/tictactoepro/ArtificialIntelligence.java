@@ -16,6 +16,8 @@ public class ArtificialIntelligence implements IPlayer{
     final String name = "computer";
     public ArtificialIntelligence(int assigned) { this.assigned = assigned; }
 
+    public void setIntelligence(IStrategy Strategy){}
+
     public int playMove() {
         int index;
         while (true) {
@@ -25,6 +27,8 @@ public class ArtificialIntelligence implements IPlayer{
             }
         }
 
+
+        // Strategy.use
 
         return index; }
 

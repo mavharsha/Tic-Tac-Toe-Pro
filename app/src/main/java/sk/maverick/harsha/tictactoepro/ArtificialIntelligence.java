@@ -14,21 +14,17 @@ public class ArtificialIntelligence implements IPlayer{
 
     int assigned;
     final String name = "computer";
+    static IStrategy strategy;
+    /*Assigining X or O*/
     public ArtificialIntelligence(int assigned) { this.assigned = assigned; }
 
-    public void setIntelligence(IStrategy Strategy){}
+    /*Difficulty level*/
+    static public void setIntelligence(IStrategy NewStrategy){ strategy = NewStrategy;}
 
+    /*Player Move*/
     public int playMove() {
         int index;
-        while (true) {
-            index = new Random().nextInt(9);
-            if (Board.board [index] == 2 ) {
-                break;
-            }
-        }
-
-
-        // Strategy.use
+        index = strategy.use();
 
         return index; }
 

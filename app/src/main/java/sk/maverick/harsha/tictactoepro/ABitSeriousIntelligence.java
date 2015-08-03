@@ -11,7 +11,8 @@ package sk.maverick.harsha.tictactoepro;
  */
 public class ABitSeriousIntelligence implements IStrategy {
     @Override
-    public void use() {
-
+    public int use() {
+        
+        return 1;
     }
 }

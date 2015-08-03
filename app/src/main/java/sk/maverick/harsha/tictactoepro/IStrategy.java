@@ -6,7 +6,8 @@
 
 package sk.maverick.harsha.tictactoepro;
 
-public interface IStrategy {
+/*Strategy Design pattern*/
 
-    public void use();
+public interface IStrategy {
+    public int use();
 }

@@ -6,6 +6,7 @@
 
 package sk.maverick.harsha.tictactoepro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,12 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * Created by Harsha on 8/2/2015.
- */
+
 public class MyDialogFragment extends android.app.DialogFragment  implements View.OnClickListener{
 
     Button lame, serious;
+    Intent intent;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,18 +27,33 @@ public class MyDialogFragment extends android.app.DialogFragment  implements Vie
 
         lame = (Button) view.findViewById(R.id.difficulty_level_lame);
         serious = (Button) view.findViewById(R.id.difficulty_level_serious);
+        lame.setOnClickListener(this);
+        serious.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.difficulty_level_lame :  dismiss();
-                Log.v("Difficulty level", "Lame selected");
-                break;
-            case R.id.difficulty_level_serious : dismiss();
-                Log.v("Difficulty level","Serious selected");
-                break;
+            case R.id.difficulty_level_lame :
+                                                    ArtificialIntelligence.setIntelligence(new LameIntelligence());
+                                                    Log.v("Difficulty level", "Lame selected");
+
+                                                    intent = new Intent(getActivity(), GameActivity.class);
+                                                    intent.putExtra("player-type", "computer");
+                                                    startActivity(intent);
+                                                    dismiss();
+                                                    break;
+
+            case R.id.difficulty_level_serious :
+                                                    ArtificialIntelligence.setIntelligence(new ABitSeriousIntelligence());
+                                                    Log.v("Difficulty level", "Serious selected");
+
+                                                    intent = new Intent(getActivity(), GameActivity.class);
+                                                    intent.putExtra("player-type", "computer");
+                                                    startActivity(intent);
+                                                    dismiss();
+                                                    break;
             default: break;
         }
     }

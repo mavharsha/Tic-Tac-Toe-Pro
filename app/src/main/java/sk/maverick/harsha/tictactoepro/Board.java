@@ -10,12 +10,12 @@ import android.util.Log;
 
 public class Board {
 
-    static int board[] = new int[9];
+    static int board[] = new int[9], occupied;
     static Boolean ended = false;
     int winner;
     public Board() {
-
         ended = false;
+        occupied=0;
         for(int i =0; i<9;i++){
             board[i]= 2;
         }
@@ -27,6 +27,7 @@ public class Board {
         GameActivity.imageButton[index/3][index%3].setImageResource(resource);
         board[index] = player.getAssigned();
         GameActivity.imageButton[index/3][index%3].setClickable(false);
+        ++occupied;
         Log.v("Board occupied","" + board[0] + board[1] + board[2] + board[3] + board[4]+ board[5]+ board[6]+ board[7]+ board[8]);
     }
 

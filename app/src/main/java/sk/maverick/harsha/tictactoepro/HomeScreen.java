@@ -38,7 +38,6 @@ public class HomeScreen extends ActionBarActivity {
 
                 FragmentManager fragmentManager = getFragmentManager();
                 MyDialogFragment myDialogFragment = new MyDialogFragment();
-
                 myDialogFragment.show(fragmentManager, "MyDialog");
 
                 /*Dialog dialog = new Dialog(HomeScreen.this);
@@ -54,11 +53,6 @@ public class HomeScreen extends ActionBarActivity {
            }
     }
 
-    public void level(Button view){
-
-
-
-    }
 
 
     @Override

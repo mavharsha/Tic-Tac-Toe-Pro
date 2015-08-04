@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class GameActivity extends ActionBarActivity {
 
@@ -50,7 +51,6 @@ public class GameActivity extends ActionBarActivity {
         {
             player_two = new PlayerTwo(0);                     // Human Vs Human
             Log.v("Selected opponent", player_two.getName());
-
         }
 
     }
@@ -76,7 +76,6 @@ public class GameActivity extends ActionBarActivity {
             board.move(currentPlayer);
             changeCurrentPlayer();
             afterMove();
-
         }
 
     }
@@ -85,7 +84,7 @@ public class GameActivity extends ActionBarActivity {
 
         board.checkForWin();
 
-        if(currentPlayer.getName().equalsIgnoreCase("computer") && !Board.ended){
+        if(currentPlayer.getName().equalsIgnoreCase("computer") & !Board.ended & Board.occupied < 9){
             board.move(currentPlayer);
             changeCurrentPlayer();
             afterMove();
@@ -94,12 +93,15 @@ public class GameActivity extends ActionBarActivity {
         if(Board.ended){
            // board.getWinner();
             int winner = board.getWinner();
-
-           // String winnerName = winner == curr
             IPlayer winnerPlayer = winner == player_one.getAssigned() ? player_one : player_two;
+            Toast.makeText(getApplicationContext(), "WInner is "+ winnerPlayer.getName(), Toast.LENGTH_SHORT).show();
 
-            Log.v("Game Activity","Game Ended and the winner is " + winnerPlayer.getName());
+            Log.v("Game Activity", "Game Ended and the winner is " + winnerPlayer.getName());
         }
+        if(Board.occupied == 9){
+            Toast.makeText(getApplicationContext(), "Tie", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void newGameClicked(View view){

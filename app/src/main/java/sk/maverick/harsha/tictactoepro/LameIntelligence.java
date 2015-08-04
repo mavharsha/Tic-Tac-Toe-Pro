@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class LameIntelligence implements IStrategy {
     @Override
-    public int use() {
+    public int use(int assigned) {
         int index;
 
         while (true) {

@@ -24,8 +24,7 @@ public class ArtificialIntelligence implements IPlayer{
     /*Player Move*/
     public int playMove() {
         int index;
-        index = strategy.use();
-
+        index = strategy.use(this.getAssigned());
         return index; }
 
     @Override

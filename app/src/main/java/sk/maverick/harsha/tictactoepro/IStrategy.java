@@ -9,5 +9,5 @@ package sk.maverick.harsha.tictactoepro;
 /*Strategy Design pattern*/
 
 public interface IStrategy {
-    public int use();
+    public int use(int assigned);
 }

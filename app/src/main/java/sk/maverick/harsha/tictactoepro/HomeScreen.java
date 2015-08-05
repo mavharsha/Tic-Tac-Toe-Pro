@@ -6,7 +6,6 @@
 
 package sk.maverick.harsha.tictactoepro;
 
-import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -32,7 +31,6 @@ public class HomeScreen extends ActionBarActivity {
         Button button = (Button) view;
         opponent = (String) button.getTag();
 
-        Log.v("Selected opponent", opponent);
 
             if(opponent.equalsIgnoreCase("computer")){
 

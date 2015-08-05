@@ -15,24 +15,24 @@ public class ABitSeriousIntelligence implements IStrategy {
     public int use(int assigned) {
 
         foundMove = false;
+        if(Board.board[4] == 2){
+            index = 4;
+            foundMove = true;
+        }
+
         index = move("attack", assigned);
 
         if(!foundMove){
             index = move("defense", assigned);
         }
         if(!foundMove){
-
-            if(Board.board[4] == 2){
-                index = 4;
-            }
-            else {
                 while (true) {
                     index = new Random().nextInt(9);
                     if (Board.board[index] == 2 ) {
                         break;
                     }
                 }
-            }
+
         }
         return index;
     }
